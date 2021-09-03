@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1 style="display: none;">로딩바</h1>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/axios.min.js"></script>
+<script>
+	// 7f65332e6d33816b773f35daec5e2d44
+	// https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=02efdd64bdc14b279bc91d9247db4722&units=metric
+
+	var appid = '7f65332e6d33816b773f35daec5e2d44'
+	var url = 'https://api.openweathermap.org/data/2.5/weather'
+	var params = {q: 'seoul', appid: appid, units: 'metric'}
+
+	function getWeather() {
+		axios
+		.get(url, {params: params})
+		.then(function({ data }){
+			console.log(data)
+		})
+		.catch(function(err){
+			console.log(err)
+		})
+}
+
+async function getWeather2 () {
+	try {
+		var {data}  = await axios.get(url, {params: params})
+		console.log(data)
+	}
+	catch(err) {
+		console.log(err)
+	}
+}
+
+getWeather()
+getWeather2()
+</script>
+</body>
+</html>
