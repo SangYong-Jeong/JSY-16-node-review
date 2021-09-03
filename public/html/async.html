@@ -1,0 +1,147 @@
+<script>
+	/*
+const throwError = new Promise((resolve, reject)=> {
+	throw Error('error')
+	// reject()
+})
+throwError
+.then(()=>{console.log('throwError success')})
+.catch(()=>{console.log('throwError catched')})
+
+const ret = new Promise((resolve, reject)=>{
+	return 'returned'
+})
+ret
+.then(()=>{console.log('ret success')})
+.catch(()=>{console.log('ret catched')})
+
+const several1 = new Promise((resolve, reject)=>{
+	resolve()
+	reject()
+})
+several1
+.then(()=>{console.log('several1 success')})
+.catch(()=>{console.log('several1 catched')})
+
+const several2 = new Promise((resolve, reject)=>{
+	reject()
+	resolve()
+})
+several2
+.then(()=>{console.log('several2 success')})
+.catch(()=>{console.log('several2 catched')})
+
+const several3 = new Promise((resolve, reject)=>{
+	resolve()
+	throw new Error('error')
+})
+several3
+.then(()=>{console.log('several3 success')})
+.catch(()=>{console.log('several3 catched')})
+*/
+
+/*
+function startAsync(age) {
+	return new Promise((resolve, reject)=>{
+		if(age > 20) {
+			// 뭔가를 합니다.
+			return resolve(0)
+		}
+		else { 
+			// 또 뭔가를 합니다.
+			return reject(`${age} is not over 20`)
+			// 뭔가를 하는 코드가 있더라도 여기 있는 코드는 '명확하게' 실행되지 않습니다.
+		}
+	})
+}
+
+const promise1 = startAsync(25)
+promise1
+.then((r)=>{
+	console.log(r)
+	return r+1
+})
+.catch((err)=>{console.log(err)})
+.then((r2)=>{
+	console.log(r2)
+	return r2+2
+})
+.then((r3)=>{
+	console.log(r3)
+	return + 3
+})
+
+
+const promise2 = startAsync(15)
+promise2
+.then((r)=>{console.log(r)})
+.catch((err)=>{console.log(err)})
+*/
+
+/*
+function startAsync(age) {
+	return new Promise((resolve, reject)=>{
+		if(age > 20) return resolve(0)
+		else return reject(`${age} is not over 20`)
+	})
+}
+*/
+
+/*
+async function startAsync(age) { // async 함수의 리턴 값은 무조건 Promise 이다.
+	if (age > 20) return `${age} success`
+	else throw new Error(`${age} is not over 20`) 
+}
+
+setTimeout(()=>{
+	const promise1 = startAsync(25)
+	promise1
+	.then((r)=>{console.log(r)})
+	.catch((err)=>{console.log(err)})
+	const promise2 = startAsync(15)
+	promise2
+	.then((r)=>{console.log(r)})
+	.catch((err)=>{console.log(err)})
+}, 1000)
+*/
+
+function setTimeoutPromise(ms) {
+	return new Promise((resolve, reject)=>{
+		setTimeout(()=> resolve(), ms)
+	})
+}
+
+async function startAsync(age) {
+	if (age > 20) return `${age} success`
+	else throw new Error(`${age} is not over 20`)
+}
+
+/*
+function startAsync2(age) {
+	if (age > 20) return `${age} success`
+	else throw new Error(`${age} is not over 20`)
+}
+*/
+
+async function startAsyncJobs() {
+	await setTimeoutPromise(1000)
+	const promise1 = startAsync(25)
+	try {
+		const value = await promise1
+		console.log(value)
+	}
+	catch(err) {
+		console.log(err)
+	}
+	const promise2 = startAsync(15)
+	try {
+		const value = await promise2
+		console.log(value)
+	}
+	catch(err) {
+		console.log(err)
+	}
+}
+startAsyncJobs()
+
+</script>

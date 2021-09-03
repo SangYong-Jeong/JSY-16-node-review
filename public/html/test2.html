@@ -1,0 +1,69 @@
+<script>
+	function Car (_name, _color) {
+		this.name = _name 
+		this.color = _color
+	}
+
+	Car.prototype.drive = () => {
+		console.log(this.name)
+		console.log(this.color)
+		console.log(this.name+'가 달립니다.')
+	}
+
+	const car = new Car('빵빵', '빨강')
+	console.log(car)
+	car.drive()
+
+	function calTotal (kor, eng, math) {
+		console.log(kor)
+		console.log(eng)
+		console.log(math)
+		return kor + eng + math
+	}
+
+			// const avgTotal =  () => {
+			// 	console.log(arguments.length)
+			// 	return kor + eng + math
+			// }
+
+	var obj1 = {
+		name: 'hong',
+		kor: 70,
+		eng: 90,
+		math: 100,
+		// total: calTotal(this.kor, this.eng, this.math), // 이 함수 안에서 this는 window
+		// avg: avgTotal(this.kor, this.eng, this.math)
+		calTotal (kor, eng, math) {
+			return this.kor + this.eng +this.math
+		},
+		calAvg (kor, eng, math) {
+			console.log(arguments)
+			return (this.kor + this.eng + this.math)/arguments.length
+		}
+	}
+	// console.log(obj1)
+	// avgTotal(1, 2, 3)
+
+	// console.log(obj1.calTotal());
+	// console.log(obj1.calAvg());
+
+	
+	function printName() {
+		var lastName = 'seo'
+		this.firstName = 'sangyong'
+		console.log(this.lastName, this.firstName) 
+		console.log(this)
+	}
+	var lastName = 'kim'
+	// printName()
+	// var a = new printName()
+	// console.log(a)
+	// console.log(window)
+
+	var obj = {
+    names: ["seo"],
+    text: "님 안녕하세요",
+    print: () => { console.log(this.text) } // undefined
+}
+obj.print()
+</script>
